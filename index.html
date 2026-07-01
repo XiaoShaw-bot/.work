@@ -414,58 +414,6 @@
             margin-bottom: 15px;
         }
 
-        /* ========== 二维码相关 ========== */
-        .qr-wrapper {
-            display: flex;
-            align-items: flex-start;
-            gap: 18px;
-            flex: 1;
-        }
-
-        .qr-right {
-            flex: 1;
-        }
-
-        .qr-code-area {
-            flex-shrink: 0;
-            width: 100px;
-            text-align: center;
-        }
-
-        .qr-code-area canvas,
-        .qr-code-area img {
-            width: 100px !important;
-            height: 100px !important;
-            border-radius: 8px;
-            background: #fff;
-            padding: 6px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        .qr-tip {
-            font-size: 11px;
-            color: #6a6a8e;
-            margin-top: 6px;
-        }
-
-        .qr-scan-btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 6px 18px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            color: #fff;
-            transition: all 0.3s;
-        }
-
-        .qr-scan-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-
         /* ========== 第三页：视频类作品 ========== */
         .video-page {
             min-height: 100vh;
@@ -712,29 +660,23 @@
             <div class="video-card">
                 <div class="video-card-icon">🎥</div>
                 <h3>视频类作品</h3>
-                <p style="margin-bottom: 30px;">以下为视频作品精选，扫码即可跳转观看。</p>
+                <p style="margin-bottom: 30px;">以下为视频作品精选，点击链接即可跳转观看。</p>
 
                 <div style="display: flex; flex-direction: column; gap: 20px; text-align: left;">
-                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px; transition: all 0.3s; display: flex; align-items: flex-start; gap: 20px;">
-                        <div style="flex:1;">
-                            <div style="font-size: 16px; font-weight: 600; color: #e0e0f0; margin-bottom: 8px;">广东公安："大水不退，我们不退"</div>
-                            <div style="font-size: 13px; color: #7a7a9e; margin-bottom: 10px;">面对台风"蝴蝶"带来的持续强降水，广东多地公安部门闻"汛"而动，坚守抗洪一线。</div>
-                        </div>
-                        <div style="flex-shrink:0; text-align: center;">
-                            <div class="qr-placeholder" data-url="https://app.xinhuanet.com/news/article.html?articleId=505507acb465ede65c43dcd6c6dce8ce&timestamp=12198" data-index="video-0"></div>
-                            <div class="qr-tip">扫码观看视频</div>
-                        </div>
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px; transition: all 0.3s;">
+                        <div style="font-size: 16px; font-weight: 600; color: #e0e0f0; margin-bottom: 8px;">广东公安："大水不退，我们不退"</div>
+                        <div style="font-size: 13px; color: #7a7a9e; margin-bottom: 15px;">面对台风"蝴蝶"带来的持续强降水，广东多地公安部门闻"汛"而动，坚守抗洪一线。</div>
+                        <a href="https://app.xinhuanet.com/news/article.html?articleId=505507acb465ede65c43dcd6c6dce8ce&timestamp=12198" target="_blank" rel="noopener noreferrer" class="video-link" style="font-size: 14px; padding: 10px 28px;">
+                            观看视频 <span class="arrow">→</span>
+                        </a>
                     </div>
 
-                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px; transition: all 0.3s; display: flex; align-items: flex-start; gap: 20px;">
-                        <div style="flex:1;">
-                            <div style="font-size: 16px; font-weight: 600; color: #e0e0f0; margin-bottom: 8px;">文化赋能 百业助荔｜"荔枝自由"来了 广州增城荔枝抢"鲜"上市</div>
-                            <div style="font-size: 13px; color: #7a7a9e; margin-bottom: 10px;">广州增城千亩荔枝林迎来丰收，果农开启"双抢"模式，让荔枝从指头到舌尖的旅程缩短至数小时。</div>
-                        </div>
-                        <div style="flex-shrink:0; text-align: center;">
-                            <div class="qr-placeholder" data-url="https://app.xinhuanet.com/news/article.html?articleId=6dac902df82f3c4e1077ebf70e341103&timestamp=47026" data-index="video-1"></div>
-                            <div class="qr-tip">扫码观看视频</div>
-                        </div>
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px; transition: all 0.3s;">
+                        <div style="font-size: 16px; font-weight: 600; color: #e0e0f0; margin-bottom: 8px;">文化赋能 百业助荔｜"荔枝自由"来了 广州增城荔枝抢"鲜"上市</div>
+                        <div style="font-size: 13px; color: #7a7a9e; margin-bottom: 15px;">广州增城千亩荔枝林迎来丰收，果农开启"双抢"模式，让荔枝从指头到舌尖的旅程缩短至数小时。</div>
+                        <a href="https://app.xinhuanet.com/news/article.html?articleId=6dac902df82f3c4e1077ebf70e341103&timestamp=47026" target="_blank" rel="noopener noreferrer" class="video-link" style="font-size: 14px; padding: 10px 28px;">
+                            观看视频 <span class="arrow">→</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -748,7 +690,6 @@
 
     <!-- ========== JavaScript ========== -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
         // ========== 粒子背景初始化 ==========
         particlesJS('particles-js', {
@@ -892,23 +833,17 @@
             } else {
                 data.articles.forEach((article, index) => {
                     html += `
-                        <div class="article-card" style="cursor:default;">
+                        <a class="article-card" href="${article.url}" target="_blank" rel="noopener noreferrer">
                             <div class="article-num" style="background: ${numBgMap[category]}; color: #fff;">${index + 1}</div>
-                            <div class="qr-wrapper">
-                                <div class="qr-right">
-                                    <div class="article-title">${article.title}</div>
-                                    <div class="article-meta">
-                                        <span>📅 ${article.date}</span>
-                                        <span>📰 ${article.source}</span>
-                                    </div>
-                                    <div class="article-excerpt">${article.excerpt}</div>
+                            <div class="article-info">
+                                <div class="article-title">${article.title}</div>
+                                <div class="article-meta">
+                                    <span>📅 ${article.date}</span>
+                                    <span>📰 ${article.source}</span>
                                 </div>
-                                <div class="qr-code-area">
-                                    <div class="qr-placeholder" data-url="${article.url}" data-index="${category}-${index}"></div>
-                                    <div class="qr-tip">扫码查看文章</div>
-                                </div>
+                                <div class="article-excerpt">${article.excerpt}</div>
                             </div>
-                        </div>
+                        </a>
                     `;
                 });
             }
@@ -917,58 +852,13 @@
             area.innerHTML = html;
         }
 
-        // ========== 二维码生成 ==========
-        function generateQRCode(element, url) {
-            try {
-                if (typeof QRCode !== 'undefined') {
-                    new QRCode(element, {
-                        text: url,
-                        width: 100,
-                        height: 100,
-                        colorDark: '#1a1a2e',
-                        colorLight: '#ffffff',
-                        correctLevel: QRCode.CorrectLevel.H
-                    });
-                } else {
-                    console.error('QRCode library not loaded');
-                }
-            } catch (e) {
-                console.error('QR Code generation error:', e);
-                element.innerHTML = '<div style="width:100px;height:100px;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:8px;font-size:11px;color:#666;padding:5px;text-align:center;">二维码生成失败</div>';
-            }
-        }
-
         // ========== 初始化 ==========
         // 页面加载时默认显示首页
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('homePage').style.display = 'flex';
+        document.addEventListener('DOMContentLoaded', function() {        文档.addEventListener('DOMContentLoaded', 函数() {
+            document.getElementById('homePage').style.display = 'flex';            文档.getElementById('homePage').样式.显示 = 'flex';
             document.getElementById('textWorks').classList.remove('active');
             document.getElementById('videoWorks').classList.remove('active');
             document.getElementById('footer').style.display = 'block';
-        });
-
-        // 监听页面切换，为新出现的二维码占位符生成二维码
-        const observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                if (mutation.type === 'attributes' || mutation.type === 'childList') {
-                    document.querySelectorAll('.qr-placeholder').forEach(function(el) {
-                        if (!el.dataset.generated) {
-                            const url = el.getAttribute('data-url');
-                            if (url) {
-                                el.dataset.generated = 'true';
-                                generateQRCode(el, url);
-                            }
-                        }
-                    });
-                }
-            });
-        });
-
-        observer.observe(document.body, {
-            attributes: true,
-            attributeFilter: ['class'],
-            childList: true,
-            subtree: true
         });
     </script>
 </body>
