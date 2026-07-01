@@ -506,6 +506,72 @@
             transform: translateX(4px);
         }
 
+        /* 视频列表卡片 */
+        .video-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: left;
+        }
+
+        .video-item {
+            display: block;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 24px;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .video-item:hover {
+            background: rgba(245, 87, 108, 0.08);
+            border-color: rgba(245, 87, 108, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .video-item-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #e0e0f0;
+            margin-bottom: 8px;
+        }
+
+        .video-item-desc {
+            font-size: 13px;
+            color: #7a7a9e;
+            margin-bottom: 14px;
+            line-height: 1.6;
+        }
+
+        .video-item-btn {
+            display: inline-block;
+            padding: 8px 22px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: #fff;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .video-item-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+        }
+
+        .video-item-btn .arrow {
+            display: inline-block;
+            transition: transform 0.3s;
+            margin-left: 3px;
+        }
+
+        .video-item-btn:hover .arrow {
+            transform: translateX(3px);
+        }
+
         /* ========== 页脚 ========== */
         .footer {
             text-align: center;
@@ -660,24 +726,20 @@
             <div class="video-card">
                 <div class="video-card-icon">🎥</div>
                 <h3>视频类作品</h3>
-                <p style="margin-bottom: 30px;">以下为视频作品精选，点击链接即可跳转观看。</p>
+                <p style="margin-bottom: 30px;">以下为视频作品精选，点击卡片或按钮即可跳转观看。</p>
 
-                <div style="display: flex; flex-direction: column; gap: 20px; text-align: left;">
-                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px; transition: all 0.3s;">
-                        <div style="font-size: 16px; font-weight: 600; color: #e0e0f0; margin-bottom: 8px;">广东公安："大水不退，我们不退"</div>
-                        <div style="font-size: 13px; color: #7a7a9e; margin-bottom: 15px;">面对台风"蝴蝶"带来的持续强降水，广东多地公安部门闻"汛"而动，坚守抗洪一线。</div>
-                        <a href="https://app.xinhuanet.com/news/article.html?articleId=505507acb465ede65c43dcd6c6dce8ce&timestamp=12198" target="_blank" rel="noopener noreferrer" class="video-link" style="font-size: 14px; padding: 10px 28px;">
-                            观看视频 <span class="arrow">→</span>
-                        </a>
-                    </div>
+                <div class="video-list">
+                    <a class="video-item" href="https://app.xinhuanet.com/news/article.html?articleId=505507acb465ede65c43dcd6c6dce8ce&timestamp=12198" target="_blank" rel="noopener noreferrer">
+                        <div class="video-item-title">广东公安："大水不退，我们不退"</div>
+                        <div class="video-item-desc">面对台风"蝴蝶"带来的持续强降水，广东多地公安部门闻"汛"而动，坚守抗洪一线，他们逆流而上，守护着群众的安宁。</div>
+                        <span class="video-item-btn">观看视频 →<span class="arrow">→</span></span>
+                    </a>
 
-                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px; transition: all 0.3s;">
-                        <div style="font-size: 16px; font-weight: 600; color: #e0e0f0; margin-bottom: 8px;">文化赋能 百业助荔｜"荔枝自由"来了 广州增城荔枝抢"鲜"上市</div>
-                        <div style="font-size: 13px; color: #7a7a9e; margin-bottom: 15px;">广州增城千亩荔枝林迎来丰收，果农开启"双抢"模式，让荔枝从指头到舌尖的旅程缩短至数小时。</div>
-                        <a href="https://app.xinhuanet.com/news/article.html?articleId=6dac902df82f3c4e1077ebf70e341103&timestamp=47026" target="_blank" rel="noopener noreferrer" class="video-link" style="font-size: 14px; padding: 10px 28px;">
-                            观看视频 <span class="arrow">→</span>
-                        </a>
-                    </div>
+                    <a class="video-item" href="https://app.xinhuanet.com/news/article.html?articleId=6dac902df82f3c4e1077ebf70e341103&timestamp=47026" target="_blank" rel="noopener noreferrer">
+                        <div class="video-item-title">文化赋能 百业助荔｜"荔枝自由"来了 广州增城荔枝抢"鲜"上市</div>
+                        <div class="video-item-desc">广州增城千亩荔枝林迎来丰收，果农开启"双抢"模式，以清晨采摘、午间发货的节奏，让荔枝从指头到舌尖的旅程缩短至数小时。</div>
+                        <span class="video-item-btn">观看视频 →<span class="arrow">→</span></span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -853,7 +915,6 @@
         }
 
         // ========== 初始化 ==========
-        // 页面加载时默认显示首页
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('homePage').style.display = 'flex';
             document.getElementById('textWorks').classList.remove('active');
