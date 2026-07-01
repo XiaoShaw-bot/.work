@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历</title>
+    <style>
+        /* ========== 全局样式 ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', sans-serif;
+            background: #0f0f1a;            背景: #0f0f1a;
+            color: #e0e0e0;            颜色: #e0e0e0;
+            overflow-x: hidden;            水平溢出: hidden;
+        }
+
+        /* ========== 粒子背景 ========== */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        /* ========== 第一页：个人介绍 ========== */
+        .page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-card {
+            background: rgba(25, 25, 45, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 50px 60px;
+            text-align: center;
+            max-width: 700px;
+            width: 90%;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            border: 3px solid transparent;
+            background: linear-gradient(135deg, #667eea, #764ba2) border-box;
+            padding: 3px;
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #2a2a4a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #fff;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(118, 75, 162, 0.5); }
+        }
+
+        .name {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .title {
+            font-size: 18px;
+            color: #9e9ebf;
+            margin-bottom: 25px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 35px;
+            text-align: left;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+
+        .info-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.2);
+        }
+
+        .info-item .icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .info-item .label {
+            font-size: 12px;
+            color: #7a7a9e;
+            margin-bottom: 2px;
+        }
+
+        .info-item .value {
+            font-size: 14px;
+            color: #d0d0e0;
+        }
+
+        .bio {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #a0a0c0;
+            margin-bottom: 35px;
+            padding: 0 10px;
+        }
+
+        /* ========== 按钮组 ========== */
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 14px 40px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-text {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.35);
+        }
+
+        .btn-text:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-video {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: #fff;
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.35);
+        }
+
+        .btn-video:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(245, 87, 108, 0.5);
+        }
+
+        /* ========== 第二页：文字类作品 ========== */
+        .works-page {
+            min-height: 100vh;
+            padding: 40px;
+            position: relative;
+            z-index: 1;
+            display: none;
+        }
+
+        .works-page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .works-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 35px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .works-title {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-btn {
+            padding: 10px 24px;
+            border: 1px solid rgba(102, 126, 234, 0.4);
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: rgba(102, 126, 234, 0.25);
+            transform: translateX(-3px);
+        }
+
+        .works-container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 30px;
+            min-height: 70vh;
+        }
+
+        /* 左侧导航栏 */
+        .sidebar {
+            width: 220px;
+            flex-shrink: 0;
+            background: rgba(25, 25, 45, 0.8);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 15px;
+        }
+
+        .sidebar-item {
+            padding: 14px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            color: #9e9ebf;
+        }
+
+        .sidebar-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #c0c0e0;
+        }
+
+        .sidebar-item.active {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.25), rgba(118, 75, 162, 0.25));
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .sidebar-item .cat-icon {
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* 右侧内容区 */
+        .content-area {
+            flex: 1;
+            background: rgba(25, 25, 45, 0.6);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .category-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .category-desc {
+            font-size: 14px;
+            color: #7a7a9e;
+            margin-bottom: 25px;
+        }
+
+        .article-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .article-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 18px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .article-card:hover {
+            background: rgba(102, 126, 234, 0.08);
+            border-color: rgba(102, 126, 234, 0.2);
+            transform: translateX(5px);
+        }
+
+        .article-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .article-info {
+            flex: 1;
+        }
+
+        .article-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #e0e0f0;
+            margin-bottom: 5px;
+        }
+
+        .article-meta {
+            font-size: 12px;
+            color: #6a6a8e;
+            display: flex;
+            gap: 15px;
+        }
+
+        .article-excerpt {
+            font-size: 13px;
+            color: #8a8aad;
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #5a5a7e;
+        }
+
+        .empty-state .empty-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        /* ========== 第三页：视频类作品 ========== */
+        .video-page {
+            min-height: 100vh;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            flex-direction: column;
+        }
+
+        .video-page.active {
+            display: flex;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .video-container {
+            text-align: center;
+            max-width: 700px;
+            width: 90%;
+        }
+
+        .video-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .video-title {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .video-card {
+            background: rgba(25, 25, 45, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .video-card-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .video-card h3 {
+            font-size: 22px;
+            color: #e0e0f0;
+            margin-bottom: 12px;
+        }
+
+        .video-card p {
+            font-size: 15px;
+            color: #8a8aad;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .video-link {
+            display: inline-block;
+            padding: 14px 45px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.35);
+        }
+
+        .video-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(245, 87, 108, 0.5);
+        }
+
+        .video-link .arrow {
+            display: inline-block;
+            transition: transform 0.3s;
+            margin-left: 5px;
+        }
+
+        .video-link:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        /* ========== 页脚 ========== */
+        .footer {
+            text-align: center;
+            padding: 25px;
+            color: #4a4a6e;
+            font-size: 13px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ========== 响应式 ========== */
+        @media (max-width: 768px) {
+            .profile-card {
+                padding: 35px 25px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .works-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                display: flex;
+                overflow-x: auto;
+                gap: 8px;
+                padding: 12px;
+            }
+
+            .sidebar-item {
+                margin-bottom: 0;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+
+            .works-page {
+                padding: 20px 15px;
+            }
+
+            .video-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 粒子背景 -->
+    <div id="particles-js"></div>
+
+    <!-- ========== 第一页：个人介绍 ========== -->
+    <div class="page" id="homePage">
+        <div class="profile-card">
+            <div class="avatar">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='38' r='18' fill='%23667eea'/%3E%3Cellipse cx='50' cy='75' rx='28' ry='20' fill='%23667eea' opacity='0.7'/%3E%3C/svg%3E" alt="头像">
+            </div>
+            <h1 class="name">肖露荷</h1>
+            <p class="title">暨南大学 · 新闻学大三学生</p>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="icon" style="background: rgba(102,126,234,0.15); color: #667eea;">📧</div>
+                    <div>
+                        <div class="label">邮箱</div>
+                        <div class="value">x195204s@petalmail.com</div>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="icon" style="background: rgba(118,75,162,0.15); color: #764ba2;">📱</div>
+                    <div>
+                        <div class="label">电话</div>
+                        <div class="value">186-8114-8109</div>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="icon" style="background: rgba(240,147,251,0.15); color: #f093fb;">📍</div>
+                    <div>
+                        <div class="label">所在地</div>
+                        <div class="value">广州天河</div>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="icon" style="background: rgba(245,87,108,0.15); color: #f5576c;">💼</div>
+                    <div>
+                        <div class="label">到岗时间</div>
+                        <div class="value">月内到岗</div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="bio">
+                在校园媒体、传统媒体、传媒公司均有过实习经历，掌握文字撰写、视频拍摄剪辑、活动策划，曾参与广东省大学生运动会、十五运、广交会等大型活动。
+            </p>
+
+            <div class="btn-group">
+                <button class="btn btn-text" onclick="showPage('textWorks')">
+                    ✍️ 文字类作品
+                </button>
+                <button class="btn btn-video" onclick="showPage('videoWorks')">
+                    🎬 视频类作品
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 第二页：文字类作品 ========== -->
+    <div class="works-page" id="textWorks">
+        <div class="works-header">
+            <h2 class="works-title">✍️ 文字类作品</h2>
+            <button class="back-btn" onclick="showPage('homePage')">← 返回首页</button>
+        </div>
+
+        <div class="works-container">
+            <!-- 左侧导航栏 -->
+            <div class="sidebar">
+                <div class="sidebar-item active" onclick="switchCategory('social', this)">
+                    <span class="cat-icon">🌍</span> 社会类
+                </div>
+                <div class="sidebar-item" onclick="switchCategory('economic', this)">
+                    <span class="cat-icon">📊</span> 经济类
+                </div>
+                <div class="sidebar-item" onclick="switchCategory('sports', this)">
+                    <span class="cat-icon">⚽</span> 文体类
+                </div>
+                <div class="sidebar-item" onclick="switchCategory('comment', this)">
+                    <span class="cat-icon">💡</span> 评论类
+                </div>
+            </div>
+
+            <!-- 右侧内容区 -->
+            <div class="content-area" id="contentArea">
+                <!-- 动态内容 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 第三页：视频类作品 ========== -->
+    <div class="video-page" id="videoWorks">
+        <div class="video-container">
+            <div class="video-header">
+                <h2 class="video-title">🎬 视频类作品</h2>
+                <button class="back-btn" onclick="showPage('homePage')">← 返回首页</button>
+            </div>
+
+            <div class="video-card">
+                <div class="video-card-icon">🎥</div>
+                <h3>视频类作品</h3>
+                <p style="margin-bottom: 30px;">以下为视频作品精选，点击链接即可跳转观看。</p>
+
+                <div style="display: flex; flex-direction: column; gap: 20px; text-align: left;">
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px; transition: all 0.3s;">
+                        <div style="font-size: 16px; font-weight: 600; color: #e0e0f0; margin-bottom: 8px;">广东公安："大水不退，我们不退"</div>
+                        <div style="font-size: 13px; color: #7a7a9e; margin-bottom: 15px;">面对台风"蝴蝶"带来的持续强降水，广东多地公安部门闻"汛"而动，坚守抗洪一线。</div>
+                        <a href="https://app.xinhuanet.com/news/article.html?articleId=505507acb465ede65c43dcd6c6dce8ce&timestamp=12198" target="_blank" rel="noopener noreferrer" class="video-link" style="font-size: 14px; padding: 10px 28px;">
+                            观看视频 <span class="arrow">→</span>
+                        </a>
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px; transition: all 0.3s;">
+                        <div style="font-size: 16px; font-weight: 600; color: #e0e0f0; margin-bottom: 8px;">文化赋能 百业助荔｜"荔枝自由"来了 广州增城荔枝抢"鲜"上市</div>
+                        <div style="font-size: 13px; color: #7a7a9e; margin-bottom: 15px;">广州增城千亩荔枝林迎来丰收，果农开启"双抢"模式，让荔枝从指头到舌尖的旅程缩短至数小时。</div>
+                        <a href="https://app.xinhuanet.com/news/article.html?articleId=6dac902df82f3c4e1077ebf70e341103&timestamp=47026" target="_blank" rel="noopener noreferrer" class="video-link" style="font-size: 14px; padding: 10px 28px;">
+                            观看视频 <span class="arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer" id="footer">
+        © 2025 个人简历 | 用心创作，记录时代
+    </div>
+
+    <!-- ========== JavaScript ========== -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // ========== 粒子背景初始化 ==========
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 60, density: { enable: true, value_area: 800 } },
+                color: { value: ['#667eea', '#764ba2', '#f093fb', '#f5576c'] },
+                shape: { type: 'circle' },
+                opacity: { value: 0.3, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#667eea',
+                    opacity: 0.1,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1.5,
+                    direction: 'none',
+                    random: true,
+                    straight: false,
+                    out_mode: 'out'
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'grab' },
+                    onclick: { enable: true, mode: 'push' }
+                }
+            },
+            retina_detect: true
+        });
+
+        // ========== 页面切换 ==========
+        function showPage(pageId) {
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('textWorks').classList.remove('active');
+            document.getElementById('videoWorks').classList.remove('active');
+            document.getElementById('footer').style.display = 'none';
+
+            if (pageId === 'homePage') {
+                document.getElementById('homePage').style.display = 'flex';
+                document.getElementById('footer').style.display = 'block';
+            } else if (pageId === 'textWorks') {
+                document.getElementById('textWorks').classList.add('active');
+                // 默认加载社会类
+                const firstItem = document.querySelector('.sidebar-item.active');
+                if (firstItem) {
+                    const category = firstItem.textContent.includes('社会') ? 'social' :
+                                     firstItem.textContent.includes('经济') ? 'economic' :
+                                     firstItem.textContent.includes('文体') ? 'sports' : 'comment';
+                    switchCategory(category, firstItem);
+                } else {
+                    switchCategory('social', document.querySelector('.sidebar-item'));
+                }
+            } else if (pageId === 'videoWorks') {
+                document.getElementById('videoWorks').classList.add('active');
+            }
+        }
+
+        // ========== 文字类作品数据 ==========
+        const worksData = {
+            social: {
+                title: '社会类作品',
+                desc: '关注社会民生，记录时代变迁中的人与事',
+                color: 'linear-gradient(135deg, #667eea, #764ba2)',                color: '线性渐变(135度, #667eea, #764ba2)',
+                articles: [
+                    { title: '"彩虹"旗帜下，他们迈入非传统家庭', date: '2024-03-20', source: '《新闻学生》', excerpt: '走近四个彩虹家庭，探讨性少数群体在非传统家庭模式下的生活实践与面临的现实难题。', url: 'https://mp.weixin.qq.com/s/cvLg_69VO_yRSD9PwEFTJg' },
+                    { title: '四起自杀背后，十年规培争议', date: '2024-03-25', source: '《新闻学生》', excerpt: '梳理12篇报道，剖析规培制度的困境与化解之道，关注深陷系统困境中的医学生群体。', url: 'https://mp.weixin.qq.com/s/J8rPGPYxHZ60mumt24kykQ' },
+                    { title: '缅北电信诈骗，一场受害者间的博弈', date: '2024-01-20', source: '《新闻学生》', excerpt: '梳理14篇报道，一窥缅北电信诈骗的真貌，厘清舆论喧哗背后牵涉的多方难题。', url: 'https://mp.weixin.qq.com/s/PO3_kxO2HZfhMovUOWYGlA' }
+                ]
+            },
+            economic: {
+                title: '经济类作品',
+                desc: '洞察经济趋势，解读市场脉动与产业变革',
+                color: 'linear-gradient(135deg, #f093fb, #f5576c)',
+                articles: [
+                    { title: '腾讯2025年Q1财报：AI筑基千行百业 企业服务收入实现双位数增长', date: '2025-05-14', source: '新华网客户端', excerpt: 'AI应用大发展时代已来，腾讯发布2025年Q1财报，企业服务收入实现双位数增长，研发开支同比增长21%。', url: 'https://app.xinhuanet.com/news/article.html?articleId=3542ab5b1e58ad8797793d3b1a1d0a3c' },
+                    { title: '千万用户排队退押金背后：ofo小黄车何以走向终结？', date: '2024-02-20', source: '微信公众号', excerpt: '从资本宠儿到轰然倒塌，深度复盘ofo小黄车的兴衰历程，探讨共享经济泡沫背后的创业与资本博弈。', url: 'https://mp.weixin.qq.com/s/1bNV21_TGwhA_L22U_a9Tw' }
+                ]
+            },
+            sports: {
+                title: '文体类作品',
+                desc: '捕捉文化体育领域的精彩瞬间与深层故事',
+                color: 'linear-gradient(135deg, #4facfe, #00f2fe)',
+                articles: [
+                    { title: '151→暨南，广东省大运会开幕！', date: '2025-05-06', source: '微信公众号', excerpt: '广东省第十二届大学生运动会在暨南大学开幕，151所高校超1.2万名运动员参与，主题"跃动青春 悦享未来"。', url: 'https://mp.weixin.qq.com/s/InBs_dEbnUueotFoUmq5RA' },
+                    { title: '从"谋生出路"到"热爱事业"：全运青春风暴吹响体育理念革新号角', date: '2025-06-15', source: '红星新闻·高校评论新秀挑战赛', excerpt: '全运会上的"小孩哥""小孩姐"强势崛起，折射出中国体育人才培养逻辑从"苦出身"到"热爱驱动"的根本性变迁。', url: 'https://mp.weixin.qq.com/s/IADmyx42_7ei9K4s1vntwQ' },
+                    { title: '演艺策略谈：从静安戏剧谷到纽约百老汇', date: '2025-06-20', source: '《如此城市》×《奔流》', excerpt: '对话静安戏剧谷策划人与上戏学者，探讨上海演艺生态与纽约百老汇在商业形态与运营模式上的异同。', url: 'https://mp.weixin.qq.com/s/_WJ1E7s0aaMptjwrAFTveg' }
+                ]
+            },
+            comment: {
+                title: '评论类作品',
+                desc: '针砭时弊，以理性之声参与公共讨论',
+                color: 'linear-gradient(135deg, #fa709a, #fee140)',
+                articles: [
+                    { title: '从"谋生出路"到"热爱事业"：全运青春风暴吹响体育理念革新号角', date: '2025-06-15', source: '红星新闻·高校评论新秀挑战赛', excerpt: '体育正从过去带有沉重使命的"出路"，日益回归其作为"热爱"的本质。', url: 'https://mp.weixin.qq.com/s/IADmyx42_7ei9K4s1vntwQ' },
+                    { title: '善用标签开启社交第一步', date: '2025-10-27', source: '中国教育报·青年说', excerpt: '标签是开启社交生活的快捷键还是束缚个人交往的牢笼？探讨"标签化社交"深层的交往之道。', url: 'https://www.toutiao.com/article/7565687362186723882/' }
+                ]
+            }
+        };
+
+        // ========== 切换分类 ==========
+        function switchCategory(category, element) {        函数 switchCategory(类别, 元素) {
+            // 更新侧边栏高亮
+            document.querySelectorAll('.sidebar-item').forEach(item => item.classList.remove('active'));
+            element.classList.add('active');
+
+            const data = worksData[category];
+            const area = document.getElementById('contentArea');
+
+            const colorMap = {
+                social: 'linear-gradient(135deg, #667eea, #764ba2)',
+                economic: 'linear-gradient(135deg, #f093fb, #f5576c)',
+                sports: 'linear-gradient(135deg, #4facfe, #00f2fe)',                sports: '线性渐变(135度, #4facfe, #00f2fe)',
+                comment: 'linear-gradient(135deg, #fa709a, #fee140)'                comment: '线性渐变(135度, #fa709a, #fee140)'                注释：'linear-gradient(135deg, #fa709a, #fee140)'                注释：'线性渐变(135度, #fa709a, #fee140)'                注释：'linear-gradient(135deg, #fa709a, #fee140)'                注释：'线性渐变(135度, #fa709a, #fee140)'                注释：'linear-gradient(135deg, #fa709a, #fee140)'                注释：'线性渐变(135度, #fa709a, #fee140)'                注释：'linear-gradient(135deg, #fa709a, #fee140)'                注释：'线性渐变(135度, #fa709a, #fee140)'                注释：'linear-gradient(135deg, #fa709a, #fee140)'                注释：'线性渐变(135度, #fa709a, #fee140)'                注释：'linear-gradient(135deg, #fa709a, #fee140)'                注释：'线性渐变(135度, #fa709a, #fee140)'                注释：'linear-gradient(135deg, #fa709a, #fee140)'                注释：'线性渐变(135度, #fa709a, #fee140)'
+            };
+
+            const numBgMap = {
+                social: 'linear-gradient(135deg, #667eea, #764ba2)',
+                economic: 'linear-gradient(135deg, #f093fb, #f5576c)',
+                sports: 'linear-gradient(135deg, #4facfe, #00f2fe)',                sports: '线性渐变(135度, #4facfe, #00f2fe)',
+                comment: 'linear-gradient(135deg, #fa709a, #fee140)'                comment: '线性渐变(135度, #fa709a, #fee140)'                注释：'linear-gradient(135deg, #fa709a, #fee140)'                注释：'线性渐变(135度, #fa709a, #fee140)'                注释：'linear-gradient(135deg, #fa709a, #fee140)'                注释：'线性渐变(135度, #fa709a, #fee140)'                注释：'linear-gradient(135deg, #fa709a, #fee140)'                注释：'线性渐变(135度, #fa709a, #fee140)'                注释：'linear-gradient(135deg, #fa709a, #fee140)'                注释：'线性渐变(135度, #fa709a, #fee140)'                注释：'linear-gradient(135deg, #fa709a, #fee140)'                注释：'线性渐变(135度, #fa709a, #fee140)'                注释：'linear-gradient(135deg, #fa709a, #fee140)'                注释：'线性渐变(135度, #fa709a, #fee140)'                注释：'linear-gradient(135deg, #fa709a, #fee140)'                注释：'线性渐变(135度, #fa709a, #fee140)'
+            };
+
+            let html = `
+                <h3 class="category-title" style="background: ${colorMap[category]}; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${data.title}</h3>
+                <p class="category-desc">${data.desc}</p>
+                <div class="article-list">
+            `;
+
+            if (data.articles.length === 0) {
+                html += `
+                    <div class="empty-state">
+                        <div class="empty-icon">📝</div>
+                        <p>暂无${data.title}作品，敬请期待</p>
+                    </div>
+                `;
+            } else {
+                data.articles.forEach((article, index) => {
+                    html += `
+                        <a class="article-card" href="${article.url}" target="_blank" rel="noopener noreferrer">
+                            <div class="article-num" style="background: ${numBgMap[category]}; color: #fff;">${index + 1}</div>
+                            <div class="article-info">
+                                <div class="article-title">${article.title}</div>
+                                <div class="article-meta">
+                                    <span>📅 ${article.date}</span>
+                                    <span>📰 ${article.source}</span>
+                                </div>
+                                <div class="article-excerpt">${article.excerpt}</div>
+                            </div>
+                        </a>
+                    `;
+                });
+            }
+
+            html += '</div>';
+            area.innerHTML = html;
+        }
+
+        // ========== 初始化 ==========
+        // 页面加载时默认显示首页
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('homePage').style.display = 'flex';
+            document.getElementById('textWorks').classList.remove('active');
+            document.getElementById('videoWorks').classList.remove('active');
+            document.getElementById('footer').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
